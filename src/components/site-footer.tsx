@@ -10,8 +10,8 @@ export default function SiteFooter() {
             <Image
               src="/brand/mark-white.png"
               alt=""
-              width={40}
-              height={40}
+              width={584}
+              height={248}
               className="h-10 w-auto"
             />
             <p className="mt-4 max-w-xs text-sm text-white/70">

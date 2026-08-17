@@ -30,8 +30,15 @@ domains needed to source them are outside this environment's network
 egress allowlist. Every listing gracefully falls back to an on-brand
 placeholder (brand name + category) via `src/components/product-image.tsx`
 — drop a real photo into `public/products/<slug>.jpg` (or `.png`/`.webp`)
-for any product and it will be picked up automatically, no code changes
-needed. Slugs are visible in `src/lib/products-data.json`.
+for any product and it will be picked up automatically. Slugs are visible
+in `src/lib/products-data.json`.
+
+Which slugs have a real photo is tracked in `src/lib/image-manifest.json`,
+regenerated automatically by `scripts/generate-image-manifest.mjs` before
+every `dev`/`build` run (or manually via `npm run images:manifest`) — this
+is what lets the product image component render the real photo or the
+placeholder immediately, without probing several file extensions over the
+network on every page load.
 
 ## Payments
 

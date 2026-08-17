@@ -66,8 +66,8 @@ export default function Home() {
             <Image
               src="/brand/mark-white.png"
               alt="KickingTee.com"
-              width={320}
-              height={140}
+              width={584}
+              height={248}
               className="h-auto w-3/4"
               priority
             />

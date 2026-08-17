@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import imageManifest from "@/lib/image-manifest.json";
 
-const EXTENSIONS = ["jpg", "png", "webp", "jpeg"];
+const MANIFEST: Record<string, string> = imageManifest;
 
 function isLight(hex: string) {
   const c = hex.replace("#", "");
@@ -34,10 +35,10 @@ export default function ProductImage({
   /** Selected colourway hex — tints the placeholder when no real photo exists. */
   tintHex?: string;
 }) {
-  const [attempt, setAttempt] = useState(0);
-  const failed = attempt >= EXTENSIONS.length;
+  const ext = MANIFEST[slug];
+  const [failed, setFailed] = useState(!ext);
 
-  if (failed) {
+  if (failed || !ext) {
     const light = tintHex ? isLight(tintHex) : false;
     const textPrimary = light ? "text-brand-navy/90" : "text-white/90";
     const textSecondary = light ? "text-brand-navy/55" : "text-white/55";
@@ -57,8 +58,8 @@ export default function ProductImage({
         <Image
           src={markSrc}
           alt=""
-          width={64}
-          height={28}
+          width={584}
+          height={248}
           className="h-7 w-auto opacity-80"
         />
         <div className="text-center">
@@ -75,14 +76,13 @@ export default function ProductImage({
 
   return (
     <Image
-      key={attempt}
-      src={`/products/${slug}.${EXTENSIONS[attempt]}`}
+      src={`/products/${slug}.${ext}`}
       alt={alt}
       fill
       sizes={sizes ?? "(min-width: 1024px) 25vw, 50vw"}
       className={className}
       style={{ objectFit: "contain" }}
-      onError={() => setAttempt((a) => a + 1)}
+      onError={() => setFailed(true)}
       priority={priority}
       unoptimized
     />

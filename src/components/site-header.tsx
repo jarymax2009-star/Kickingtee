@@ -22,8 +22,8 @@ export default function SiteHeader() {
           <Image
             src="/brand/mark.png"
             alt=""
-            width={36}
-            height={36}
+            width={584}
+            height={248}
             priority
             className="h-9 w-auto"
           />
