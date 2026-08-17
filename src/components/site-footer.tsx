@@ -38,6 +38,9 @@ export default function SiteFooter() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               <li><Link href="/about" className="hover:text-white">About &amp; testing method</Link></li>
+              <li><Link href="/terms" className="hover:text-white">Terms &amp; Conditions</Link></li>
+              <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+              <li><Link href="/returns" className="hover:text-white">Returns &amp; Refunds</Link></li>
             </ul>
           </div>
 

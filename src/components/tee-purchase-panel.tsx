@@ -4,6 +4,7 @@ import { useState } from "react";
 import ProductImage from "./product-image";
 import ColorSwatches from "./color-swatches";
 import AddToCart from "./add-to-cart";
+import CompareToggle from "./compare-toggle";
 import { formatPrice, isPurchasable, type Tee } from "@/lib/products";
 
 const CONFIDENCE_COPY: Record<string, string> = {
@@ -76,8 +77,11 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
           </div>
         )}
 
-        <div className="mt-6">
-          <AddToCart slug={tee.slug} color={color} purchasable={isPurchasable(tee)} />
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <div className="min-w-[220px] flex-1">
+            <AddToCart slug={tee.slug} color={color} purchasable={isPurchasable(tee)} />
+          </div>
+          <CompareToggle slug={tee.slug} variant="detail" />
         </div>
 
         {tee.notes && (

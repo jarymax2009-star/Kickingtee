@@ -3,7 +3,9 @@ import { Montserrat, Open_Sans } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
+import CompareBar from "@/components/compare-bar";
 import { CartProvider } from "@/lib/cart-context";
+import { CompareProvider } from "@/lib/compare-context";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -34,9 +36,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-white text-brand-navy">
         <CartProvider>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
+          <CompareProvider>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+            <CompareBar />
+          </CompareProvider>
         </CartProvider>
       </body>
     </html>

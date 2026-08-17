@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProductImage from "./product-image";
+import CompareToggle from "./compare-toggle";
 import { formatPrice, isPurchasable, type Tee } from "@/lib/products";
 
 const CONFIDENCE_LABEL: Record<string, string> = {
@@ -31,6 +32,7 @@ export default function ProductCard({ tee }: { tee: Tee }) {
             Pro-used
           </span>
         )}
+        <CompareToggle slug={tee.slug} />
       </div>
 
       <div className="flex flex-1 flex-col gap-1 p-4">
