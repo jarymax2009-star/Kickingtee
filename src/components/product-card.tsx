@@ -42,6 +42,19 @@ export default function ProductCard({ tee }: { tee: Tee }) {
         </h3>
         <p className="text-xs text-brand-grey">{tee.category ?? "Kicking tee"}</p>
 
+        {tee.colors.length > 1 && (
+          <div className="flex items-center gap-1.5 pt-1">
+            {tee.colors.map((c) => (
+              <span
+                key={c.name}
+                title={c.name}
+                className="h-3 w-3 rounded-full ring-1 ring-black/10"
+                style={{ backgroundColor: c.hex }}
+              />
+            ))}
+          </div>
+        )}
+
         <div className="mt-auto flex items-center justify-between pt-3">
           <div>
             <p className="font-display text-lg font-bold text-brand-navy">

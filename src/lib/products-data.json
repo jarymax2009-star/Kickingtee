@@ -27,7 +27,16 @@
     "sourceUrl": "https://rugbybricks.com/products/rb-vortex-high-cut-kicking-tee",
     "endorsement": "Reece Hodge, Quade Cooper",
     "notes": "Used by long-distance kickers Reece Hodge, Quade Cooper. Price converted from $55 NZD.",
-    "image": "/products/rugby-bricks-rb-vortex-high-cut.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ]
   },
   {
     "slug": "rugby-bricks-rb-vortex-low-cut",
@@ -57,7 +66,16 @@
     "sourceUrl": "https://rugbybricks.com/en-us/products/rb-vortex-low-cut-kicking-tee",
     "endorsement": "Thomas Ramos, Romain Ntamack, Emiliano Boffelli",
     "notes": "Used by Thomas Ramos, Romain Ntamack, Emiliano Boffelli. Price converted from $55 NZD (consistent across Vortex Low/Mid/High).",
-    "image": "/products/rugby-bricks-rb-vortex-low-cut.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ]
   },
   {
     "slug": "rugby-bricks-rb-vortex-mid-cut",
@@ -87,7 +105,16 @@
     "sourceUrl": "https://rugbybricks.com/collections/kicking-tees",
     "endorsement": "Quade Cooper, Damian Willemse, Ryan Papenhuyzen",
     "notes": "Height 92mm (moved to dedicated column not available - see notes: fixed height 92mm). Price converted from $55 NZD (same price point across Low/Mid/High Cut). Best-selling tee per manufacturer - confirmed via site (#1 seller). Used by Damian Willemse, Quade Cooper, Ryan Papenhuyzen.",
-    "image": "/products/rugby-bricks-rb-vortex-mid-cut.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ]
   },
   {
     "slug": "rugby-bricks-rb-wolf",
@@ -117,7 +144,12 @@
     "sourceUrl": "https://rugbybricks.com/",
     "endorsement": null,
     "notes": "Sold individually and bundled with RB Wolf Plus (bundle pack $80 for the pair). Individual price and mm spec not found - check product page.",
-    "image": "/products/rugby-bricks-rb-wolf.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "rugby-bricks-rb-wolf-plus",
@@ -147,7 +179,16 @@
     "sourceUrl": "https://rugbybricks.com/",
     "endorsement": null,
     "notes": "Paired with RB Wolf in 'Low Kickers Pack' bundle ($80 for two). Individual price and mm spec not found - check product page.",
-    "image": "/products/rugby-bricks-rb-wolf-plus.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ]
   },
   {
     "slug": "gilbert-320-precision-mid",
@@ -177,7 +218,12 @@
     "sourceUrl": "https://www.rugbyimports.com/products/precision-tee-mid-320-gram ; https://www.gilbertrugby.com/products/320-precision-kicking-tee",
     "endorsement": null,
     "notes": "Height corrected from prior estimate (32mm, not 40mm) per Gilbert/retailer listings. Price converted from $16 USD. Also sold as \"Precision Mid\". Gilbert also makes a 450g High version, Quicker Kicker II, XACT, Adjustable and Telescopic models - see added rows below.",
-    "image": "/products/gilbert-320-precision-mid.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "gilbert-450-precision-high",
@@ -207,7 +253,12 @@
     "sourceUrl": "https://www.worldrugbyshop.com/products/gilbert-450-precision-rugby-kicking-tee",
     "endorsement": null,
     "notes": "Four rubber prongs for ball support/precise contact. Exact mm height not published by Gilbert. Price converted from $19 USD.",
-    "image": "/products/gilbert-450-precision-high.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "gilbert-adjustable-rugby-kicking-tee",
@@ -237,7 +288,20 @@
     "sourceUrl": "https://www.rugbyimports.com/collections/gilbert/kicking-tee",
     "endorsement": null,
     "notes": "Price converted from $24 USD. Adjustment range/mechanism not detailed in listing - confirm with Gilbert.",
-    "image": "/products/gilbert-adjustable-rugby-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "gilbert-quicker-kicker-ii",
@@ -267,7 +331,12 @@
     "sourceUrl": "https://www.rugbyimports.com/collections/gilbert/kicking-tee",
     "endorsement": null,
     "notes": "Entry-level one-piece design, affordable. Price converted from $12 USD.",
-    "image": "/products/gilbert-quicker-kicker-ii.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "gilbert-telescopic-kicking-tee",
@@ -297,7 +366,16 @@
     "sourceUrl": "https://www.martinberrillsports.com/products/gilbert-telescopic-kicking-tee",
     "endorsement": null,
     "notes": "Robust design holds height under strong strikes. Price not found - check retailer.",
-    "image": "/products/gilbert-telescopic-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "gilbert-xact",
@@ -327,7 +405,12 @@
     "sourceUrl": "https://www.rugbyimports.com/collections/gilbert/kicking-tee",
     "endorsement": null,
     "notes": "Price converted from $13.20 USD. Spec sheet not published.",
-    "image": "/products/gilbert-xact.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "optimum-adjustable-kicking-tee-lift-to-adjust",
@@ -357,7 +440,16 @@
     "sourceUrl": "https://www.optimumsport.com/products/rugby-kicking-tee-adjustable",
     "endorsement": null,
     "notes": "Confirmed 8cm-12cm adjustable range via gradual notches. Compatible with ball sizes 3, 4 and 5. Price not listed on scraped page - check site. CONFIRMED price \u00a310.49 direct from optimumsport.com (native GBP listing).",
-    "image": "/products/optimum-adjustable-kicking-tee-lift-to-adjust.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "optimum-rugby-fixed-kicking-tee",
@@ -387,7 +479,12 @@
     "sourceUrl": "https://www.optimumsport.com/products/rugby-kicking-tee-fixed",
     "endorsement": null,
     "notes": "Rotatable angle adjustment for ball presentation despite being a 'fixed' height tee. Price not listed on scraped page - check site. CONFIRMED price \u00a34.99 direct from optimumsport.com (native GBP listing).",
-    "image": "/products/optimum-rugby-fixed-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "optimum-screw-kicking-tee",
@@ -417,7 +514,20 @@
     "sourceUrl": "https://www.prodirectsport.com/rugby/p/optimum-rugby-accessories-screw-kicking-tee-black-yellow-17126/",
     "endorsement": null,
     "notes": "20mm range of adjustment via screw mechanism; fluo hi-vis colourway (SKU KIC003). Price not listed on scraped page - check site.",
-    "image": "/products/optimum-screw-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "rhino-rugby-adjustable-telescopic-kicking-tee",
@@ -447,7 +557,20 @@
     "sourceUrl": "https://usa.rhinorugby.com/collections/kicking-tees",
     "endorsement": "Fin Smith",
     "notes": "Closest equivalent to pro adjustable tees; used style by Fin Smith. 3-section telescopic, rounded polymer construction. Price not published on Rhino category pages - requires direct quote/trade contact. CONFIRMED price $27.75 USD via usa.rhinorugby.com product page (converted).",
-    "image": "/products/rhino-rugby-adjustable-telescopic-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "rhino-rugby-dave-alred-performance-tee",
@@ -477,7 +600,12 @@
     "sourceUrl": "https://usa.rhinorugby.com/collections/kicking-tees",
     "endorsement": "Dave Alred",
     "notes": "Developed with kicking coach Dave Alred; peg-alignment system, available in 2 sizes (senior/junior for ball sizes 4 & 5). Price not published - requires direct quote/trade contact. CONFIRMED price $14.52 USD via usa.rhinorugby.com product page (converted).",
-    "image": "/products/rhino-rugby-dave-alred-performance-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "dan-carter-supertee-elite-120",
@@ -507,7 +635,16 @@
     "sourceUrl": "https://www.rugbystuff.com/collections/carter",
     "endorsement": null,
     "notes": "Extra height/lift option. Price estimate as above.",
-    "image": "/products/dan-carter-supertee-elite-120.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ]
   },
   {
     "slug": "dan-carter-supertee-elite-75",
@@ -537,7 +674,16 @@
     "sourceUrl": "https://www.rugbystuff.com/collections/carter",
     "endorsement": "Dan Carter, Daryl Halligan",
     "notes": "Flat-trajectory option in the Elite line. Designed by Daryl Halligan with Dan Carter. Price is an estimate converted from $33.70 USD Walmart listing (variant-dependent - confirm exact SKU price).",
-    "image": "/products/dan-carter-supertee-elite-75.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ]
   },
   {
     "slug": "dan-carter-supertee-elite-95",
@@ -567,7 +713,16 @@
     "sourceUrl": "https://www.rugbystuff.com/collections/carter",
     "endorsement": null,
     "notes": "Most popular starting point at club level per retailer. Price estimate as above.",
-    "image": "/products/dan-carter-supertee-elite-95.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ]
   },
   {
     "slug": "centurion-rugby-deluxe-kicking-tee",
@@ -597,7 +752,12 @@
     "sourceUrl": "https://www.centurion-rugby.com/products/deluxe-kicking-tee",
     "endorsement": null,
     "notes": "Quick setup design; mm height not published.",
-    "image": "/products/centurion-rugby-deluxe-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "centurion-rugby-henry-paul-kicking-tee",
@@ -627,7 +787,12 @@
     "sourceUrl": "https://www.centurion-rugby.com/collections/rugby-kicking-tees",
     "endorsement": null,
     "notes": "Named model in Centurion range alongside Telescopic, Precision, Standard and Deluxe. Detailed specs not published online - direct manufacturer contact needed.",
-    "image": "/products/centurion-rugby-henry-paul-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "centurion-rugby-precision-kicking-tee",
@@ -657,7 +822,12 @@
     "sourceUrl": "https://www.centurion-rugby.com/collections/rugby-kicking-tees",
     "endorsement": "Henry Paul",
     "notes": "Named in Centurion's range listing alongside Telescopic/Henry Paul/Standard/Deluxe; detailed specs and price not published - contact manufacturer.",
-    "image": "/products/centurion-rugby-precision-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "centurion-rugby-standard-kicking-tee",
@@ -687,7 +857,12 @@
     "sourceUrl": "https://www.centurion-rugby.com/products/standard-kicking-tee",
     "endorsement": null,
     "notes": "Budget/youth-focused; 120mm base diameter, 32mm height confirmed on product page.",
-    "image": "/products/centurion-rugby-standard-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "centurion-rugby-telescopic-kicking-tee",
@@ -717,7 +892,16 @@
     "sourceUrl": "https://www.centurion-rugby.com/collections/rugby-kicking-tees",
     "endorsement": null,
     "notes": "Adjustable height 6-11cm confirmed via Centurion/Decathlon listings. Used in League and Union.",
-    "image": "/products/centurion-rugby-telescopic-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "canterbury-ccc-rugby-kicking-tee",
@@ -747,7 +931,12 @@
     "sourceUrl": "https://therugbyshop.com/products/canterbury-rugby-kicking-tee ; https://www.canterburycanada.com/collections/equipment",
     "endorsement": null,
     "notes": "Low-profile, sits close to ground; ~180g confirmed via retailer listing. Price converted from $14.99 USD average across US/Canada retailers ($11.87-$16.50 range seen).",
-    "image": "/products/canterbury-ccc-rugby-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "steeden-nrl-kicking-tee-regular",
@@ -777,7 +966,12 @@
     "sourceUrl": "https://www.steeden.com.au/products/kicking-tee-black-regular-no-packaging-2",
     "endorsement": null,
     "notes": "Dimensions confirmed: approx 12.5cm w x 12.5cm d x 4cm h. Price converted from $7.99 AUD. Leading rugby league brand (NRL official).",
-    "image": "/products/steeden-nrl-kicking-tee-regular.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "steeden-telescopic-kicking-tee",
@@ -807,7 +1001,16 @@
     "sourceUrl": "https://www.steeden.com.au/products/telescopic-kicking-tee-3",
     "endorsement": null,
     "notes": "Adjustable 6-11cm confirmed. Price converted from $24.99 AUD.",
-    "image": "/products/steeden-telescopic-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "kooga-adjustable-kicking-tee",
@@ -837,7 +1040,16 @@
     "sourceUrl": "https://ruggers.com/products/kooga-adjustable-kicking-tee",
     "endorsement": null,
     "notes": "Adjusts both height and tilt. Price converted from $17.99 USD.",
-    "image": "/products/kooga-adjustable-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   },
   {
     "slug": "kooga-flag-kicking-tee",
@@ -867,7 +1079,12 @@
     "sourceUrl": "https://us.sportsdirect.com/kooga",
     "endorsement": null,
     "notes": "Budget/practice-tier tee. Price converted from $11.24 USD.",
-    "image": "/products/kooga-flag-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "kooga-rugby-standard-kicking-tee",
@@ -897,7 +1114,12 @@
     "sourceUrl": "https://www.sportsdirect.com/rugby/rugby-equipment/kicking-tees",
     "endorsement": null,
     "notes": "Confirm current parent company/ownership (KooGa now part of BLK rugby division). Price converted from $8.99 USD (US listing; UK pricing may differ). KooGa also sells an Adjustable Kicking Tee and a budget Flag Kicking Tee - see added rows below.",
-    "image": "/products/kooga-rugby-standard-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "ram-rugby-kicking-tee",
@@ -927,7 +1149,12 @@
     "sourceUrl": "https://www.ramrugby.co.uk/collections/kicking-tees",
     "endorsement": null,
     "notes": "UK club/schools supplier (3,000+ clubs). Range includes a Deluxe tee (7 colours), a screw-adjustable tee, and a junior telescopic tee - only one generic SKU price found ($14.00); confirm per-model pricing directly.",
-    "image": "/products/ram-rugby-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "precision-fixed-kicking-tee",
@@ -957,7 +1184,12 @@
     "sourceUrl": "https://www.martinberrillsports.com/products/precision-rugby-kicking-tee",
     "endorsement": null,
     "notes": "4cm/40mm height confirmed via retailer listing. Price not found - check retailer.",
-    "image": "/products/precision-fixed-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      }
+    ]
   },
   {
     "slug": "precision-telescopic-kicking-tee",
@@ -987,6 +1219,15 @@
     "sourceUrl": "https://www.ebay.com/itm/116678803081",
     "endorsement": null,
     "notes": "Distinct budget brand (not to be confused with Gilbert's 'Precision' model line). Price converted from $18.96 USD eBay listing - confirm on primary retailer.",
-    "image": "/products/precision-telescopic-kicking-tee.jpg"
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#111315"
+      },
+      {
+        "name": "Fluo Yellow",
+        "hex": "#D7FF3D"
+      }
+    ]
   }
 ]

@@ -64,71 +64,84 @@ export default function CartPage() {
 
       <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
         <ul className="divide-y divide-brand-silver">
-          {items.map(({ line, tee }) => (
-            <li key={tee.slug} className="flex gap-4 py-5">
-              <Link
-                href={`/tees/${tee.slug}`}
-                className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-brand-silver/30"
-              >
-                <ProductImage
-                  slug={tee.slug}
-                  alt={`${tee.brand} ${tee.model}`}
-                  brand={tee.brand}
-                  category={tee.category}
-                  sizes="96px"
-                />
-              </Link>
+          {items.map(({ line, tee }) => {
+            const swatchHex = tee.colors.find((c) => c.name === line.color)?.hex;
+            return (
+              <li key={`${tee.slug}__${line.color}`} className="flex gap-4 py-5">
+                <Link
+                  href={`/tees/${tee.slug}`}
+                  className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-brand-silver/30"
+                >
+                  <ProductImage
+                    slug={tee.slug}
+                    alt={`${tee.brand} ${tee.model}`}
+                    brand={tee.brand}
+                    category={tee.category}
+                    sizes="96px"
+                    tintHex={swatchHex}
+                  />
+                </Link>
 
-              <div className="flex flex-1 flex-col justify-between">
-                <div>
-                  <Link
-                    href={`/tees/${tee.slug}`}
-                    className="font-display text-sm font-bold text-brand-navy hover:text-brand-blue"
-                  >
-                    {tee.brand} {tee.model}
-                  </Link>
-                  <p className="text-xs text-brand-grey">{tee.category}</p>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center rounded-md border border-brand-silver">
-                    <button
-                      type="button"
-                      onClick={() => setQty(tee.slug, line.qty - 1)}
-                      className="px-2.5 py-1 text-brand-navy hover:bg-brand-silver/50"
-                      aria-label="Decrease quantity"
+                <div className="flex flex-1 flex-col justify-between">
+                  <div>
+                    <Link
+                      href={`/tees/${tee.slug}`}
+                      className="font-display text-sm font-bold text-brand-navy hover:text-brand-blue"
                     >
-                      −
-                    </button>
-                    <span className="w-6 text-center text-sm font-semibold text-brand-navy">
-                      {line.qty}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setQty(tee.slug, line.qty + 1)}
-                      className="px-2.5 py-1 text-brand-navy hover:bg-brand-silver/50"
-                      aria-label="Increase quantity"
-                    >
-                      +
-                    </button>
+                      {tee.brand} {tee.model}
+                    </Link>
+                    <p className="text-xs text-brand-grey">{tee.category}</p>
+                    {line.color && (
+                      <p className="mt-1 flex items-center gap-1.5 text-xs text-brand-grey">
+                        <span
+                          className="h-3 w-3 rounded-full ring-1 ring-black/10"
+                          style={{ backgroundColor: swatchHex ?? "#ccc" }}
+                        />
+                        {line.color}
+                      </p>
+                    )}
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <span className="font-display text-sm font-bold text-brand-navy">
-                      {formatPrice((tee.priceGBP ?? 0) * line.qty)}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => remove(tee.slug)}
-                      className="text-xs text-brand-grey hover:text-red-600"
-                    >
-                      Remove
-                    </button>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center rounded-md border border-brand-silver">
+                      <button
+                        type="button"
+                        onClick={() => setQty(tee.slug, line.color, line.qty - 1)}
+                        className="px-2.5 py-1 text-brand-navy hover:bg-brand-silver/50"
+                        aria-label="Decrease quantity"
+                      >
+                        −
+                      </button>
+                      <span className="w-6 text-center text-sm font-semibold text-brand-navy">
+                        {line.qty}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setQty(tee.slug, line.color, line.qty + 1)}
+                        className="px-2.5 py-1 text-brand-navy hover:bg-brand-silver/50"
+                        aria-label="Increase quantity"
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <span className="font-display text-sm font-bold text-brand-navy">
+                        {formatPrice((tee.priceGBP ?? 0) * line.qty)}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => remove(tee.slug, line.color)}
+                        className="text-xs text-brand-grey hover:text-red-600"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
 
         <div className="h-fit rounded-xl border border-brand-silver p-5">

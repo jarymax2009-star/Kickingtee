@@ -31,6 +31,11 @@ export type GripFamily =
   | "Other"
   | "Unspecified";
 
+export interface TeeColor {
+  name: string;
+  hex: string;
+}
+
 export interface Tee {
   slug: string;
   brand: string;
@@ -59,6 +64,7 @@ export interface Tee {
   sourceUrl: string | null;
   endorsement: string | null;
   notes: string;
+  colors: TeeColor[];
 }
 
 export const tees = raw as Tee[];

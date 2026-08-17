@@ -5,6 +5,15 @@ import Image from "next/image";
 
 const EXTENSIONS = ["jpg", "png", "webp", "jpeg"];
 
+function isLight(hex: string) {
+  const c = hex.replace("#", "");
+  if (c.length < 6) return false;
+  const r = parseInt(c.substring(0, 2), 16);
+  const g = parseInt(c.substring(2, 4), 16);
+  const b = parseInt(c.substring(4, 6), 16);
+  return (r * 299 + g * 587 + b * 114) / 1000 > 190;
+}
+
 export default function ProductImage({
   slug,
   alt,
@@ -13,6 +22,7 @@ export default function ProductImage({
   className,
   sizes,
   priority,
+  tintHex,
 }: {
   slug: string;
   alt: string;
@@ -21,27 +31,41 @@ export default function ProductImage({
   className?: string;
   sizes?: string;
   priority?: boolean;
+  /** Selected colourway hex — tints the placeholder when no real photo exists. */
+  tintHex?: string;
 }) {
   const [attempt, setAttempt] = useState(0);
   const failed = attempt >= EXTENSIONS.length;
 
   if (failed) {
+    const light = tintHex ? isLight(tintHex) : false;
+    const textPrimary = light ? "text-brand-navy/90" : "text-white/90";
+    const textSecondary = light ? "text-brand-navy/55" : "text-white/55";
+    const markSrc = light ? "/brand/mark.png" : "/brand/mark-white.png";
+
     return (
       <div
-        className={`flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-brand-navy to-[#122c52] px-4 text-brand-white ${className ?? ""}`}
+        className={`flex flex-col items-center justify-center gap-3 px-4 ${
+          tintHex ? "" : "bg-gradient-to-br from-brand-navy to-[#122c52]"
+        } ${className ?? ""}`}
+        style={
+          tintHex
+            ? { background: `linear-gradient(135deg, ${tintHex}, ${tintHex}dd)` }
+            : undefined
+        }
       >
         <Image
-          src="/brand/mark-white.png"
+          src={markSrc}
           alt=""
           width={64}
           height={28}
           className="h-7 w-auto opacity-80"
         />
         <div className="text-center">
-          <p className="font-display text-xs font-bold uppercase tracking-wide text-white/90">
+          <p className={`font-display text-xs font-bold uppercase tracking-wide ${textPrimary}`}>
             {brand}
           </p>
-          <p className="mt-0.5 text-[11px] text-white/55">
+          <p className={`mt-0.5 text-[11px] ${textSecondary}`}>
             {category ?? "Kicking Tee"} · photo coming soon
           </p>
         </div>

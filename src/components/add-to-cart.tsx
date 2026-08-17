@@ -4,7 +4,15 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart-context";
 
-export default function AddToCart({ slug, purchasable }: { slug: string; purchasable: boolean }) {
+export default function AddToCart({
+  slug,
+  color,
+  purchasable,
+}: {
+  slug: string;
+  color: string;
+  purchasable: boolean;
+}) {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
@@ -49,7 +57,7 @@ export default function AddToCart({ slug, purchasable }: { slug: string; purchas
         <button
           type="button"
           onClick={() => {
-            add(slug, qty);
+            add(slug, color, qty);
             setJustAdded(true);
             setTimeout(() => setJustAdded(false), 1800);
           }}
@@ -61,7 +69,7 @@ export default function AddToCart({ slug, purchasable }: { slug: string; purchas
       <button
         type="button"
         onClick={() => {
-          add(slug, qty);
+          add(slug, color, qty);
           router.push("/cart");
         }}
         className="w-full rounded-md border border-brand-navy px-6 py-3 text-sm font-bold text-brand-navy transition hover:bg-brand-navy hover:text-white"

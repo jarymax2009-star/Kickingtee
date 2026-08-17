@@ -4,6 +4,7 @@ import { getTeeBySlug, isPurchasable } from "@/lib/products";
 
 interface CheckoutLine {
   slug: string;
+  color: string;
   qty: number;
 }
 
@@ -47,9 +48,9 @@ export async function POST(req: NextRequest) {
         currency: "gbp",
         unit_amount: Math.round(tee.priceGBP! * 100),
         product_data: {
-          name: `${tee.brand} ${tee.model}`,
+          name: `${tee.brand} ${tee.model}${line.color ? ` — ${line.color}` : ""}`,
           description: tee.category ?? undefined,
-          metadata: { slug: tee.slug },
+          metadata: { slug: tee.slug, color: line.color ?? "" },
         },
       },
     });

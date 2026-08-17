@@ -12,21 +12,26 @@ import { getTeeBySlug } from "./products";
 
 export interface CartLine {
   slug: string;
+  color: string;
   qty: number;
 }
 
 interface CartContextValue {
   lines: CartLine[];
-  add: (slug: string, qty?: number) => void;
-  remove: (slug: string) => void;
-  setQty: (slug: string, qty: number) => void;
+  add: (slug: string, color: string, qty?: number) => void;
+  remove: (slug: string, color: string) => void;
+  setQty: (slug: string, color: string, qty: number) => void;
   clear: () => void;
   count: number;
   subtotalGBP: number;
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
-const STORAGE_KEY = "kickingtee-cart";
+const STORAGE_KEY = "kickingtee-cart-v2";
+
+function sameLine(a: { slug: string; color: string }, b: { slug: string; color: string }) {
+  return a.slug === b.slug && a.color === b.color;
+}
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([]);
@@ -48,27 +53,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
   }, [lines, hydrated]);
 
-  const add = useCallback((slug: string, qty = 1) => {
+  const add = useCallback((slug: string, color: string, qty = 1) => {
     setLines((prev) => {
-      const existing = prev.find((l) => l.slug === slug);
+      const existing = prev.find((l) => sameLine(l, { slug, color }));
       if (existing) {
         return prev.map((l) =>
-          l.slug === slug ? { ...l, qty: l.qty + qty } : l
+          sameLine(l, { slug, color }) ? { ...l, qty: l.qty + qty } : l
         );
       }
-      return [...prev, { slug, qty }];
+      return [...prev, { slug, color, qty }];
     });
   }, []);
 
-  const remove = useCallback((slug: string) => {
-    setLines((prev) => prev.filter((l) => l.slug !== slug));
+  const remove = useCallback((slug: string, color: string) => {
+    setLines((prev) => prev.filter((l) => !sameLine(l, { slug, color })));
   }, []);
 
-  const setQty = useCallback((slug: string, qty: number) => {
+  const setQty = useCallback((slug: string, color: string, qty: number) => {
     setLines((prev) =>
       qty <= 0
-        ? prev.filter((l) => l.slug !== slug)
-        : prev.map((l) => (l.slug === slug ? { ...l, qty } : l))
+        ? prev.filter((l) => !sameLine(l, { slug, color }))
+        : prev.map((l) => (sameLine(l, { slug, color }) ? { ...l, qty } : l))
     );
   }, []);
 

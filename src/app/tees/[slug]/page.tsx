@@ -1,14 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ProductImage from "@/components/product-image";
 import ProductCard from "@/components/product-card";
-import AddToCart from "@/components/add-to-cart";
-import {
-  formatPrice,
-  getAllTees,
-  getTeeBySlug,
-  isPurchasable,
-} from "@/lib/products";
+import TeePurchasePanel from "@/components/tee-purchase-panel";
+import { formatPrice, getAllTees, getTeeBySlug } from "@/lib/products";
 
 export function generateStaticParams() {
   return getAllTees().map((t) => ({ slug: t.slug }));
@@ -37,12 +31,6 @@ function Spec({ label, value }: { label: string; value: React.ReactNode }) {
     </div>
   );
 }
-
-const CONFIDENCE_COPY: Record<string, string> = {
-  confirmed: "Price confirmed directly with retailer",
-  listed: "Price as listed by retailer",
-  estimated: "Estimated price — converted or unconfirmed at source",
-};
 
 export default async function TeeDetailPage({
   params,
@@ -74,76 +62,7 @@ export default async function TeeDetailPage({
         <span className="text-brand-navy">{tee.brand} {tee.model}</span>
       </nav>
 
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-brand-silver/30">
-          <ProductImage
-            slug={tee.slug}
-            alt={`${tee.brand} ${tee.model}`}
-            brand={tee.brand}
-            category={tee.category}
-            priority
-            sizes="(min-width: 1024px) 40vw, 90vw"
-          />
-        </div>
-
-        <div>
-          <p className="text-sm font-bold uppercase tracking-wide text-brand-blue">
-            {tee.brand}
-          </p>
-          <h1 className="mt-1 font-display text-3xl font-bold text-brand-navy">
-            {tee.model}
-          </h1>
-          <p className="mt-1 text-brand-grey">{tee.category ?? "Kicking tee"}</p>
-
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            {tee.code && (
-              <span className="rounded-full bg-brand-navy px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
-                {tee.code}
-              </span>
-            )}
-            {tee.endorsement && (
-              <span className="rounded-full bg-brand-blue px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
-                Used by {tee.endorsement}
-              </span>
-            )}
-          </div>
-
-          <div className="mt-6 flex items-baseline gap-2">
-            <span className="font-display text-3xl font-bold text-brand-navy">
-              {formatPrice(tee.priceGBP)}
-            </span>
-            {tee.priceConfidence && (
-              <span className="text-xs text-brand-grey">
-                {CONFIDENCE_COPY[tee.priceConfidence]}
-              </span>
-            )}
-          </div>
-
-          <div className="mt-6">
-            <AddToCart slug={tee.slug} purchasable={isPurchasable(tee)} />
-          </div>
-
-          {tee.notes && (
-            <p className="mt-6 rounded-lg bg-brand-silver/40 p-4 text-sm leading-relaxed text-brand-navy/80">
-              {tee.notes}
-            </p>
-          )}
-
-          {tee.sourceUrl && (
-            <p className="mt-4 text-xs text-brand-grey">
-              Manufacturer reference:{" "}
-              <a
-                href={tee.sourceUrl.split(";")[0].trim()}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="text-brand-blue hover:underline"
-              >
-                {new URL(tee.sourceUrl.split(";")[0].trim()).hostname}
-              </a>
-            </p>
-          )}
-        </div>
-      </div>
+      <TeePurchasePanel tee={tee} />
 
       <div className="mt-14 grid gap-10 lg:grid-cols-2">
         <div>
