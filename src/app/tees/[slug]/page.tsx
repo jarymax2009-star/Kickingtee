@@ -2,10 +2,21 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProductCard from "@/components/product-card";
 import TeePurchasePanel from "@/components/tee-purchase-panel";
-import { formatPrice, getAllTees, getTeeBySlug } from "@/lib/products";
+import { formatPrice, getAllTees, getTeeBySlug, isPurchasable, type Tee } from "@/lib/products";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllTees().map((t) => ({ slug: t.slug }));
+}
+
+function describeTee(tee: Tee): string {
+  const specs = [
+    tee.heightMm ? `${tee.heightMm}mm height` : null,
+    tee.mechanismFamily !== "Unspecified" ? tee.mechanismFamily.toLowerCase() : null,
+    tee.code ?? null,
+  ].filter(Boolean);
+  const specText = specs.length ? ` — ${specs.join(", ")}` : "";
+  return `${tee.brand} ${tee.model}: ${tee.category ?? "rugby kicking tee"}${specText}. ${formatPrice(tee.priceGBP)}, compared spec-for-spec against every other tee on the market.`;
 }
 
 export async function generateMetadata({
@@ -16,9 +27,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const tee = getTeeBySlug(slug);
   if (!tee) return {};
+  const title = `${tee.brand} ${tee.model}`;
+  const description = describeTee(tee);
+  const url = `/tees/${tee.slug}`;
   return {
-    title: `${tee.brand} ${tee.model}`,
-    description: `${tee.brand} ${tee.model} — ${tee.category ?? "rugby kicking tee"}. ${formatPrice(tee.priceGBP)}.`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, url, type: "website" },
+    twitter: { title, description },
   };
 }
 
@@ -52,8 +69,58 @@ export default async function TeeDetailPage({
           .filter((t) => t.slug !== tee.slug && t.category === tee.category)
           .slice(0, 4);
 
+  const pageUrl = `${SITE_URL}/tees/${tee.slug}`;
+  const imageUrl = `${SITE_URL}/tees/${tee.slug}/opengraph-image/og`;
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${tee.brand} ${tee.model}`,
+    description: describeTee(tee),
+    sku: tee.slug,
+    category: tee.category ?? undefined,
+    image: [imageUrl],
+    brand: { "@type": "Brand", name: tee.brand },
+    ...(isPurchasable(tee)
+      ? {
+          offers: {
+            "@type": "Offer",
+            url: pageUrl,
+            priceCurrency: "GBP",
+            price: tee.priceGBP,
+            availability: "https://schema.org/InStock",
+            itemCondition: "https://schema.org/NewCondition",
+            seller: { "@type": "Organization", name: "KickingTee.com" },
+          },
+        }
+      : {}),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Shop", item: `${SITE_URL}/shop` },
+      { "@type": "ListItem", position: 3, name: `${tee.brand} ${tee.model}`, item: pageUrl },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+
       <nav className="mb-6 text-xs text-brand-grey">
         <Link href="/shop" className="hover:text-brand-blue">
           Shop

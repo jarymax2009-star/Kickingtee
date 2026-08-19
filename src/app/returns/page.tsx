@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import LegalDraftNotice from "@/components/legal-draft-notice";
 
+const title = "Returns & Refunds";
+const description = "How to return an item and how refunds work at KickingTee.com.";
+
 export const metadata: Metadata = {
-  title: "Returns & Refunds",
-  description: "How to return an item and how refunds work at KickingTee.com.",
+  title,
+  description,
+  alternates: { canonical: "/returns" },
+  openGraph: { title, description, url: "/returns", images: ["/opengraph-image"] },
+  twitter: { title, description },
+  // Draft content with [bracketed placeholders] instead of real company
+  // details — keep it out of search results until it's finalised, then
+  // remove this once real details are filled in.
+  robots: { index: false, follow: true },
 };
 
 export default function ReturnsPage() {

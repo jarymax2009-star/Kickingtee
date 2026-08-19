@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import LegalDraftNotice from "@/components/legal-draft-notice";
 
+const title = "Terms & Conditions";
+const description = "Terms and conditions of sale for KickingTee.com.";
+
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
-  description: "Terms and conditions of sale for KickingTee.com.",
+  title,
+  description,
+  alternates: { canonical: "/terms" },
+  openGraph: { title, description, url: "/terms", images: ["/opengraph-image"] },
+  twitter: { title, description },
+  // Draft content with [bracketed placeholders] instead of real company
+  // details — keep it out of search results until it's finalised, then
+  // remove this once real details are filled in.
+  robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {

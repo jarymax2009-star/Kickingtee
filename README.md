@@ -124,6 +124,44 @@ graceful "not configured" fallback were all tested directly — the actual
 Stripe/Resend API calls could not be exercised end-to-end here and should
 be smoke-tested once deployed somewhere with normal internet access.
 
+## SEO & discoverability
+
+- **Sitemap & robots** (`src/app/sitemap.ts`, `robots.ts`) — every
+  indexable page (home, shop, about, all 33 product pages) is listed with
+  a `lastModified` date. `/compare`, `/cart`, `/checkout/success` are
+  excluded — they're personalised, `localStorage`-driven pages with
+  nothing server-rendered for a crawler to see. `/terms`, `/privacy`,
+  `/returns` are also excluded *for now*, since they're still drafts with
+  `[bracketed placeholders]` instead of real company details — see the
+  comment in `sitemap.ts` for exactly where to add them back once
+  finalised.
+- **Structured data (JSON-LD)** — `Organization` + `WebSite` sitewide
+  (`layout.tsx`); `Product` (with `Offer`/price/availability, only when a
+  price actually exists — never fabricated) + `BreadcrumbList` on every
+  product page; `BreadcrumbList` on `/shop`. Validate with
+  [Google's Rich Results Test](https://search.google.com/test/rich-results)
+  after deploying — it couldn't be reached from this environment's
+  network (see the note on the webhook further up for why).
+- **Open Graph / Twitter Cards** — every indexable page has a real
+  title/description/canonical/OG image, not just inherited defaults.
+  **Watch out if you add more pages**: Next.js does *not* deep-merge
+  `openGraph`/`twitter` objects between a layout and its children — if a
+  page defines its own `openGraph`, it must also either supply `images`
+  itself or explicitly reference `/opengraph-image`, or the page silently
+  loses its social preview image. Every page here does one or the other;
+  keep that pattern for new ones.
+- **Dynamic OG images** (`next/og`, `ImageResponse`) — a branded card is
+  generated at build time for the homepage, `/shop`, and **every single
+  product page** (brand, model, price, category, union/league — see
+  `src/app/tees/[slug]/opengraph-image.tsx`). These also double as the
+  `image` in each product's structured data, which is genuinely useful
+  since there's no real product photography yet (see
+  [Product photography](#product-photography)) — Google requires an
+  image for `Product` rich results, and this always exists.
+- **Canonical URLs** on every indexable page, so query-string variants
+  (e.g. `/shop?code=Union`) consolidate to one canonical `/shop` rather
+  than reading as duplicate content.
+
 ## Performance, security & accessibility
 
 A few things worth knowing about how the site is configured under the hood:
@@ -139,9 +177,7 @@ A few things worth knowing about how the site is configured under the hood:
   statically generated — this only works because checkout is a full-page
   redirect to a Stripe-hosted URL rather than an embedded iframe/Elements
   integration; revisit the policy if that ever changes.
-- **SEO**: `src/app/robots.ts` and `src/app/sitemap.ts` generate
-  `/robots.txt` and `/sitemap.xml` (every static page + all 33 product
-  pages), pointing at `NEXT_PUBLIC_SITE_URL`.
+- **SEO**: see [SEO & discoverability](#seo--discoverability) below.
 - **Accessibility**: every page passes an automated WCAG 2 A/AA sweep
   (axe-core) with zero violations — including colour contrast (the hero's
   accent blue and the homepage brand strip needed adjusting; see

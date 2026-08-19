@@ -2,10 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getBrands } from "@/lib/products";
 
+const title = "About";
+const description =
+  "Why KickingTee.com exists, and how our spec-based filtering and independent testing method works.";
+
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Why KickingTee.com exists, and how our spec-based filtering and independent testing method works.",
+  title,
+  description,
+  alternates: { canonical: "/about" },
+  openGraph: { title, description, url: "/about", images: ["/opengraph-image"] },
+  twitter: { title, description },
 };
 
 export default function AboutPage() {

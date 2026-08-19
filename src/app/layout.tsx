@@ -6,6 +6,7 @@ import SiteFooter from "@/components/site-footer";
 import CompareBar from "@/components/compare-bar";
 import { CartProvider } from "@/lib/cart-context";
 import { CompareProvider } from "@/lib/compare-context";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -19,13 +20,45 @@ const openSans = Open_Sans({
   weight: ["400", "600", "700"],
 });
 
+const DESCRIPTION =
+  "The independent, cross-brand marketplace for rugby kicking tees. Filter by height, cup angle, base diameter, grip and independently tested wind & wet-pitch performance.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "KickingTee.com — Compare Rugby Kicking Tees",
-    template: "%s | KickingTee.com",
+    default: `${SITE_NAME} — Compare Rugby Kicking Tees`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "The independent, cross-brand marketplace for rugby kicking tees. Filter by height, cup angle, base diameter, grip and independently tested wind & wet-pitch performance.",
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — Compare Rugby Kicking Tees`,
+    description: DESCRIPTION,
+    url: "/",
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — Compare Rugby Kicking Tees`,
+    description: DESCRIPTION,
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/brand/mark.png`,
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: SITE_URL,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -35,6 +68,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${montserrat.variable} ${openSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-brand-navy">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <CartProvider>
           <CompareProvider>
             <SiteHeader />

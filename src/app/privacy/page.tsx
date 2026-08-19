@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import LegalDraftNotice from "@/components/legal-draft-notice";
 
+const title = "Privacy Policy";
+const description = "How KickingTee.com collects, uses, and protects your data.";
+
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "How KickingTee.com collects, uses, and protects your data.",
+  title,
+  description,
+  alternates: { canonical: "/privacy" },
+  openGraph: { title, description, url: "/privacy", images: ["/opengraph-image"] },
+  twitter: { title, description },
+  // Draft content with [bracketed placeholders] instead of real company
+  // details — keep it out of search results until it's finalised, then
+  // remove this once real details are filled in.
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPage() {

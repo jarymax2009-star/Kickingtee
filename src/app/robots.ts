@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kickingtee.com";
+import { SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin/", "/api/", "/cart", "/checkout/"],
+      disallow: ["/admin/", "/api/", "/cart", "/checkout/", "/compare"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
