@@ -222,8 +222,8 @@ export default function FilterSidebar({
 
       <div className="rounded-lg bg-brand-silver/40 p-3 text-xs leading-relaxed text-brand-grey">
         <strong className="text-brand-navy">Wind &amp; wet-pitch ratings:</strong>{" "}
-        we&apos;re independently field-testing every tee — ratings will appear
-        here as testing completes.
+        we&apos;re field-testing every tee ourselves. Ratings show up here as
+        each one gets tested.
       </div>
     </div>
   );

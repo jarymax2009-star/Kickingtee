@@ -51,7 +51,7 @@ export default async function Image() {
             textAlign: "center",
           }}
         >
-          {teeCount} tees from {brandCount} brands — filter by real specs
+          {teeCount} tees from {brandCount} brands, filter by real specs
         </div>
       </div>
     ),

@@ -5,8 +5,8 @@ import { SITE_URL } from "@/lib/site";
 const teeCount = getAllTees().length;
 const brandCount = getBrands().length;
 
-const title = "Shop Rugby Kicking Tees — Filter by Spec";
-const description = `Browse ${teeCount} rugby kicking tees from ${brandCount} brands — Rugby Bricks, Gilbert, Optimum, Rhino Rugby, Dan Carter and more. Filter by height, adjustment mechanism, base diameter, cup angle, weight, material and grip.`;
+const title = "Shop Rugby Kicking Tees, Filter by Spec";
+const description = `Browse ${teeCount} rugby kicking tees from ${brandCount} brands, including Rugby Bricks, Gilbert, Optimum, Rhino Rugby and Dan Carter. Filter by height, adjustment mechanism, base diameter, cup angle, weight, material and grip.`;
 
 export const metadata: Metadata = {
   title,

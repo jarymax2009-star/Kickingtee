@@ -25,7 +25,7 @@ export default function AddToCart({
         disabled
         className="w-full cursor-not-allowed rounded-md bg-brand-silver px-6 py-3 text-sm font-bold text-brand-grey"
       >
-        Out of stock — price unavailable
+        Out of stock, price unavailable
       </button>
     );
   }

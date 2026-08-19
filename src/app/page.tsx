@@ -21,17 +21,16 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-28">
           <div>
             <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-silver">
-              The independent kicking tee marketplace
+              Independent. Not tied to any one brand.
             </span>
             <h1 className="mt-5 font-display text-4xl font-bold leading-tight sm:text-5xl">
-              Find the right kicking tee —{" "}
-              <span className="text-brand-blue-ondark">by spec, not guesswork.</span>
+              Find a kicking tee that actually{" "}
+              <span className="text-brand-blue-ondark">fits how you kick.</span>
             </h1>
             <p className="mt-5 max-w-lg text-white/70">
-              Every major rugby kicking tee brand, filterable by height,
-              adjustment mechanism, base width, cup angle, weight, material
-              and grip — plus independent wind and wet-pitch testing as it
-              lands.
+              Filter every major brand by height, adjustment mechanism, base
+              width, cup angle, weight, material and grip. We&apos;re adding
+              independent wind and wet-pitch testing as it&apos;s finished.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -81,19 +80,19 @@ export default function Home() {
           {[
             {
               title: "Real spec filters",
-              body: "Height in mm, cup angle, base diameter and more — not vague low/mid/high labels.",
+              body: "Height in millimetres, exact cup angle, base diameter. The numbers most listings leave out.",
             },
             {
-              title: "Cross-brand comparison",
-              body: `${brands.length} brands, one place — Rugby Bricks to Gilbert to Steeden.`,
+              title: "One place, every brand",
+              body: `${brands.length} brands lined up side by side, from Rugby Bricks to Gilbert to Steeden.`,
             },
             {
-              title: "Independent testing",
-              body: "Wind stability and wet-pitch grip ratings, field-tested by us — rolling out now.",
+              title: "Field-tested, not guessed",
+              body: "We're rating wind stability and wet-pitch grip ourselves, tee by tee, as testing wraps up.",
             },
             {
-              title: "Secure checkout",
-              body: "Fast, secure payment powered by Stripe. Cards, Apple Pay & Google Pay.",
+              title: "Checkout that just works",
+              body: "Stripe handles payment. Cards, Apple Pay and Google Pay all work at checkout.",
             },
           ].map((card) => (
             <div
@@ -122,7 +121,7 @@ export default function Home() {
             >
               <p className="font-display text-lg font-bold">Rugby Union</p>
               <p className="mt-1 text-sm text-white/70 group-hover:text-white/90">
-                Widest range — Gilbert, Rugby Bricks, Optimum &amp; more
+                The widest range: Gilbert, Rugby Bricks, Optimum and more
               </p>
             </Link>
             <Link
@@ -131,7 +130,7 @@ export default function Home() {
             >
               <p className="font-display text-lg font-bold">Rugby League</p>
               <p className="mt-1 text-sm text-white/70 group-hover:text-white/90">
-                NRL-approved from Steeden and more
+                Steeden and the other brands league kickers reach for
               </p>
             </Link>
             <Link
@@ -155,10 +154,10 @@ export default function Home() {
           <div className="mb-6 flex items-end justify-between">
             <div>
               <h2 className="font-display text-2xl font-bold text-brand-navy">
-                Trusted by the pros
+                Already on the pitch
               </h2>
               <p className="mt-1 text-sm text-brand-grey">
-                Tees used by professional kickers and coaches
+                Tees professional kickers and coaches actually use
               </p>
             </div>
             <Link

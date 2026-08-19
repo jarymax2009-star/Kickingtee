@@ -44,7 +44,7 @@ export default function CartPage() {
           Your cart is empty
         </h1>
         <p className="mt-2 text-brand-grey">
-          Find your next kicking tee with our filters.
+          Use the filters to find your next one.
         </p>
         <Link
           href="/shop"

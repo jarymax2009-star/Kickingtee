@@ -15,8 +15,8 @@ export default function SiteFooter() {
               className="h-10 w-auto"
             />
             <p className="mt-4 max-w-xs text-sm text-white/70">
-              The independent, cross-brand marketplace for rugby kicking
-              tees — filter by real specs, not marketing labels.
+              An independent, cross-brand marketplace for rugby kicking
+              tees. We list the real numbers so you can compare properly.
             </p>
           </div>
 

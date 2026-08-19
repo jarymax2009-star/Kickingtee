@@ -56,8 +56,8 @@ export default function PrivacyPage() {
             <li>
               <strong>Browsing data:</strong> your cart, colour selections,
               and any tees you&apos;ve added to Compare are stored locally
-              in your browser (via <code>localStorage</code>) — this is not
-              sent to us or any third party until you check out.
+              in your browser (via <code>localStorage</code>). None of this
+              is sent to us or any third party until you check out.
             </li>
             <li>
               <strong>Technical data:</strong> IP address, browser type, and
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
             <li>To meet our legal obligations (e.g. tax and accounting records).</li>
             <li>To detect and prevent fraud.</li>
             <li>
-              To send you marketing about new tees or offers — only if
+              To send you marketing about new tees or offers, only if
               you&apos;ve opted in, and you can unsubscribe at any time.
             </li>
             <li>To improve the site (aggregated, non-identifying analysis of orders and traffic).</li>
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
           <h2>5. Cookies &amp; local storage</h2>
           <p>
             We use your browser&apos;s local storage to remember your cart
-            and comparison list between visits — this stays on your device
+            and comparison list between visits. This stays on your device
             and isn&apos;t something we can read. If we add analytics or
             marketing cookies in future, we&apos;ll update this policy and
             ask for consent where required by law.
@@ -118,8 +118,8 @@ export default function PrivacyPage() {
             <li>
               The individual <strong>manufacturers</strong> of the tee(s)
               you order, where fulfilment requires it (e.g. dropshipping or
-              warranty claims) — only the details needed to fulfil that
-              order.
+              warranty claims). We only share the details needed to fulfil
+              that order.
             </li>
             <li>
               Professional advisers and authorities, where required by law.

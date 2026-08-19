@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "KickingTee.com — Compare Rugby Kicking Tees";
+export const alt = "KickingTee.com: Compare Rugby Kicking Tees";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -37,17 +37,6 @@ export default async function Image() {
           }}
         >
           Kicking<span style={{ color: "#3399FF" }}>Tee</span>.com
-        </div>
-        <div
-          style={{
-            display: "flex",
-            marginTop: 20,
-            fontSize: 32,
-            color: "rgba(255,255,255,0.75)",
-            textAlign: "center",
-          }}
-        >
-          Compare rugby kicking tees by spec, not guesswork
         </div>
       </div>
     ),

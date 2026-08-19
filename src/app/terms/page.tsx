@@ -62,8 +62,8 @@ export default function TermsPage() {
             publicly confirmed by the manufacturer, we label it as
             &ldquo;estimated&rdquo; on the product page. Colourway options
             shown are indicative and are not confirmed manufacturer SKUs
-            unless stated otherwise — we will contact you if your chosen
-            colour is unavailable before dispatch.
+            unless stated otherwise. If your chosen colour is unavailable
+            before dispatch, we&apos;ll contact you.
           </p>
           <p>
             All prices are shown in GBP (£) and include VAT where
@@ -84,9 +84,9 @@ export default function TermsPage() {
             we dispatch your order (or confirm dispatch by email).
           </p>
           <p>
-            We may decline or cancel an order at our discretion — for
-            example if an item is unexpectedly out of stock, if we
-            suspect fraud, or if a pricing or listing error is identified.
+            We may decline or cancel an order at our discretion. Examples
+            include an item unexpectedly going out of stock, suspected
+            fraud, or a pricing or listing error.
             If we cancel an order you have paid for, we will refund you in
             full.
           </p>
@@ -162,8 +162,8 @@ export default function TermsPage() {
         <section>
           <h2>9. Intellectual property</h2>
           <p>
-            All content on kickingtee.com — including our name, logo, spec
-            comparisons, and independent testing ratings — belongs to us or
+            All content on kickingtee.com, including our name, logo, spec
+            comparisons and independent testing ratings, belongs to us or
             our licensors. Manufacturer names, product names, and any
             associated trade marks belong to their respective owners; we use
             them for identification purposes only.

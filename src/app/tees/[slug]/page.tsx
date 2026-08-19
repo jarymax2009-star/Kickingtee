@@ -15,8 +15,8 @@ function describeTee(tee: Tee): string {
     tee.mechanismFamily !== "Unspecified" ? tee.mechanismFamily.toLowerCase() : null,
     tee.code ?? null,
   ].filter(Boolean);
-  const specText = specs.length ? ` — ${specs.join(", ")}` : "";
-  return `${tee.brand} ${tee.model}: ${tee.category ?? "rugby kicking tee"}${specText}. ${formatPrice(tee.priceGBP)}, compared spec-for-spec against every other tee on the market.`;
+  const specText = specs.length ? ` (${specs.join(", ")})` : "";
+  return `${tee.brand} ${tee.model}: ${tee.category ?? "rugby kicking tee"}${specText}. ${formatPrice(tee.priceGBP)}. See how it compares spec-for-spec against every other tee we carry.`;
 }
 
 export async function generateMetadata({

@@ -21,12 +21,12 @@ const openSans = Open_Sans({
 });
 
 const DESCRIPTION =
-  "The independent, cross-brand marketplace for rugby kicking tees. Filter by height, cup angle, base diameter, grip and independently tested wind & wet-pitch performance.";
+  "An independent, cross-brand marketplace for rugby kicking tees. Filter by height, cup angle, base diameter, grip, and wind and wet-pitch performance as we test it.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Compare Rugby Kicking Tees`,
+    default: `${SITE_NAME}: Compare Rugby Kicking Tees`,
     template: `%s | ${SITE_NAME}`,
   },
   description: DESCRIPTION,
@@ -34,14 +34,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Compare Rugby Kicking Tees`,
+    title: `${SITE_NAME}: Compare Rugby Kicking Tees`,
     description: DESCRIPTION,
     url: "/",
     locale: "en_GB",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Compare Rugby Kicking Tees`,
+    title: `${SITE_NAME}: Compare Rugby Kicking Tees`,
     description: DESCRIPTION,
   },
 };

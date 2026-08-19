@@ -36,12 +36,12 @@ export default function AboutPage() {
             Real specs, not marketing labels
           </h2>
           <p className="mt-2 text-brand-grey">
-            Every tee in our range is logged with the same set of hard
-            numbers — fixed height in mm, adjustable range, base diameter,
-            cup angle, weight, material, shore hardness and grip type —
-            gathered directly from manufacturer spec sheets and retailer
-            listings. Where a figure isn&apos;t published, we say so rather
-            than guessing.
+            Every tee in our range is logged with the same set of hard numbers:
+            fixed height in mm, adjustable range, base diameter, cup angle,
+            weight, material, shore hardness and grip type. We pull these
+            straight from manufacturer spec sheets and retailer listings.
+            Where a figure isn&apos;t published anywhere, we say so instead
+            of guessing at it.
           </p>
         </div>
 

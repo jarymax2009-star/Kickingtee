@@ -25,7 +25,7 @@ function SuccessContent() {
         Order confirmed
       </h1>
       <p className="mt-2 text-brand-grey">
-        Thanks for your order — a confirmation email is on its way from
+        Thanks for your order. A confirmation email is on its way from
         Stripe.
       </p>
       {sessionId && (

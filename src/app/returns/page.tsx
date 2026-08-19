@@ -61,7 +61,7 @@ export default function ReturnsPage() {
             For a change-of-mind return, you&apos;re responsible for the
             cost of returning the item unless we sent you the wrong item or
             it arrived faulty or damaged, in which case we&apos;ll cover
-            return postage — contact us first and we&apos;ll advise the
+            return postage. Contact us first and we&apos;ll advise the
             best way to send it back.
           </p>
         </section>
@@ -82,11 +82,11 @@ export default function ReturnsPage() {
           <p>
             If your tee arrives faulty, damaged, or isn&apos;t what you
             ordered, you&apos;re covered separately by your statutory rights
-            under the Consumer Rights Act 2015 — this is broader than the
+            under the Consumer Rights Act 2015. This is broader than the
             change-of-mind window above. Depending on how long you&apos;ve
             had the item, you may be entitled to a repair, replacement, or
             refund. Email [returns@kickingtee.com] with your order number
-            and a photo of the issue and we&apos;ll sort it out — this
+            and a photo of the issue and we&apos;ll sort it out. This
             doesn&apos;t affect your right to return an unwanted item under
             Section 1.
           </p>
@@ -98,7 +98,7 @@ export default function ReturnsPage() {
             Items should be returned unused, with any tags/packaging intact
             where reasonably possible, so we can resell or return them to
             the manufacturer. This doesn&apos;t affect your right to inspect
-            an item as you reasonably would in a shop — we may make a
+            an item as you reasonably would in a shop. We may make a
             deduction from your refund if the value has been reduced by
             handling beyond that.
           </p>

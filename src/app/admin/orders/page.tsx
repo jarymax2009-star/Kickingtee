@@ -6,7 +6,7 @@ import { listOrders, topTees, orderStats } from "@/lib/db";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Orders — Admin",
+  title: "Orders: Admin",
   robots: { index: false, follow: false },
 };
 
@@ -28,7 +28,7 @@ export default function AdminOrdersPage() {
         <div>
           <h1 className="font-display text-2xl font-bold text-brand-navy">Orders</h1>
           <p className="mt-1 text-sm text-brand-grey">
-            Internal view — recorded from Stripe webhook events as orders complete.
+            Internal view, recorded from Stripe webhook events as orders complete.
           </p>
         </div>
         <a
@@ -41,7 +41,7 @@ export default function AdminOrdersPage() {
       <p className="mt-2 text-xs text-brand-grey">
         Every order also appends automatically to a standalone Excel
         workbook at <code className="rounded bg-brand-silver/50 px-1 py-0.5">data/orders.xlsx</code> on
-        the server — one row per tee + colour ordered. Download it above,
+        the server, one row per tee and colour ordered. Download it above,
         or point a synced folder (OneDrive/Dropbox/Google Drive desktop)
         at that file to keep a live copy off the server.
       </p>
@@ -94,7 +94,7 @@ export default function AdminOrdersPage() {
       </h2>
       {orders.length === 0 ? (
         <p className="text-sm text-brand-grey">
-          No orders yet — this fills in automatically once Stripe webhooks are
+          No orders yet. This fills in automatically once Stripe webhooks are
           configured and a real payment completes.
         </p>
       ) : (
@@ -116,7 +116,7 @@ export default function AdminOrdersPage() {
                 {o.items.map((item) => (
                   <li key={item.id}>
                     {item.quantity}× {item.brand} {item.model}
-                    {item.color ? ` (${item.color})` : ""} —{" "}
+                    {item.color ? ` (${item.color})` : ""}:{" "}
                     {formatMoney(item.unit_amount * item.quantity, o.currency)}
                   </li>
                 ))}

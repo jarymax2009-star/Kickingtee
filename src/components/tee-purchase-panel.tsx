@@ -10,7 +10,7 @@ import { formatPrice, isPurchasable, type Tee } from "@/lib/products";
 const CONFIDENCE_COPY: Record<string, string> = {
   confirmed: "Price confirmed directly with retailer",
   listed: "Price as listed by retailer",
-  estimated: "Estimated price — converted or unconfirmed at source",
+  estimated: "Estimated price, converted or unconfirmed at source",
 };
 
 export default function TeePurchasePanel({ tee }: { tee: Tee }) {
@@ -22,7 +22,7 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
       <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-brand-silver/30">
         <ProductImage
           slug={tee.slug}
-          alt={`${tee.brand} ${tee.model} — ${color}`}
+          alt={`${tee.brand} ${tee.model}, ${color}`}
           brand={tee.brand}
           category={tee.category}
           priority
@@ -67,12 +67,12 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
         {tee.colors.length > 0 && (
           <div className="mt-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-wide text-brand-navy">
-              Colour — <span className="font-semibold text-brand-grey">{color}</span>
+              Colour: <span className="font-semibold text-brand-grey">{color}</span>
             </p>
             <ColorSwatches colors={tee.colors} value={color} onChange={setColor} />
             <p className="mt-2 text-[11px] text-brand-grey">
-              Indicative colourways — confirm exact availability with the
-              manufacturer before ordering.
+              Colourways shown are indicative. Confirm exact availability with
+              the manufacturer before ordering.
             </p>
           </div>
         )}

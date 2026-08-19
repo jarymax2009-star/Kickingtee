@@ -183,9 +183,9 @@ export default function ComparePage() {
       </div>
 
       <p className="mt-4 text-xs text-brand-grey">
-        Wind stability and wet-pitch grip ratings are from our own
-        independent testing programme, still rolling out — most tees will
-        show &ldquo;testing pending&rdquo; until rated.
+        Wind stability and wet-pitch grip ratings come from our own testing
+        programme, which is still rolling out. Most tees will show
+        &ldquo;testing pending&rdquo; until we get to them.
       </p>
     </div>
   );

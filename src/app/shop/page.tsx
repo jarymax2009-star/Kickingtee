@@ -26,8 +26,8 @@ function ShopContent() {
           Shop rugby kicking tees
         </h1>
         <p className="mt-2 max-w-2xl text-brand-grey">
-          {allTees.length} tees from {new Set(allTees.map((t) => t.brand)).size} brands,
-          filterable by the specs that actually matter — not just vague
+          {allTees.length} tees from {new Set(allTees.map((t) => t.brand)).size} brands.
+          Filter by the specs that actually matter, not vague
           &ldquo;low / mid / high&rdquo; labels.
         </p>
       </div>
