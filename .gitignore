@@ -37,9 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
-# local orders database (contains customer order data — never commit)
+# local orders database + Excel ledger (contain customer order data — never commit)
 /data/*.db
 /data/*.db-*
+/data/*.xlsx
 
 # typescript
 *.tsbuildinfo

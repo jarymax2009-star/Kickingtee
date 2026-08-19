@@ -24,9 +24,26 @@ export default function AdminOrdersPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-      <h1 className="font-display text-2xl font-bold text-brand-navy">Orders</h1>
-      <p className="mt-1 text-sm text-brand-grey">
-        Internal view — recorded from Stripe webhook events as orders complete.
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="font-display text-2xl font-bold text-brand-navy">Orders</h1>
+          <p className="mt-1 text-sm text-brand-grey">
+            Internal view — recorded from Stripe webhook events as orders complete.
+          </p>
+        </div>
+        <a
+          href="/admin/orders/export"
+          className="shrink-0 rounded-md bg-brand-blue px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-navy"
+        >
+          Download orders (.xlsx)
+        </a>
+      </div>
+      <p className="mt-2 text-xs text-brand-grey">
+        Every order also appends automatically to a standalone Excel
+        workbook at <code className="rounded bg-brand-silver/50 px-1 py-0.5">data/orders.xlsx</code> on
+        the server — one row per tee + colour ordered. Download it above,
+        or point a synced folder (OneDrive/Dropbox/Google Drive desktop)
+        at that file to keep a live copy off the server.
       </p>
 
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-2">

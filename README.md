@@ -31,8 +31,10 @@ Next.js (App Router) + Tailwind CSS.
   (company name, registered address, etc.) before relying on them.
 - **Order tracking** — a Stripe webhook
   (`src/app/api/webhooks/stripe/route.ts`) records every completed order
-  into a local SQLite database and emails a summary to the address in
-  `ORDER_NOTIFICATION_EMAIL`. See [Order tracking](#order-tracking) below.
+  into a local SQLite database *and* a standalone Excel workbook
+  (`data/orders.xlsx`, one row per tee + colour ordered), and emails a
+  summary to the address in `ORDER_NOTIFICATION_EMAIL`. See
+  [Order tracking](#order-tracking) below.
 - **Brand kit** — logo, mark, and navy/blue/silver palette live in
   `public/brand/` and `src/app/globals.css`.
 
@@ -82,7 +84,17 @@ When a Stripe Checkout session completes, Stripe calls
    (`data/orders.db`, via `src/lib/db.ts` using Node's built-in
    `node:sqlite`) — idempotently, so a retried webhook delivery never
    double-records an order.
-3. Emails a summary of the order to `ORDER_NOTIFICATION_EMAIL` via the
+3. Appends the same order to a standalone Excel workbook,
+   `data/orders.xlsx` (`src/lib/excel.ts`, via
+   [exceljs](https://github.com/exceljs/exceljs)) — **one row per tee +
+   colour ordered**, not per order, so every row directly answers "which
+   tee and which colour." Multi-item orders share the same Order ID
+   across their rows. This file lives outside the web app's own pages —
+   open it directly in Excel, or point a synced folder (OneDrive/Dropbox/
+   Google Drive desktop) at `data/` to keep a live copy elsewhere
+   automatically. A failure writing to it never blocks the order from
+   being recorded in the database.
+4. Emails a summary of the order to `ORDER_NOTIFICATION_EMAIL` via the
    [Resend](https://resend.com) API (`src/lib/email.ts`). If
    `RESEND_API_KEY`/`ORDER_NOTIFICATION_EMAIL` aren't set, this step is
    skipped with a console warning — it never blocks the order from being
@@ -91,7 +103,8 @@ When a Stripe Checkout session completes, Stripe calls
 To see recorded orders and which tees are selling, visit `/admin/orders`
 — it's gated behind Basic Auth via `ADMIN_BASIC_AUTH_USER` /
 `ADMIN_BASIC_AUTH_PASS` (set in `.env.local`; the route 503s until both
-are set).
+are set). A "Download orders (.xlsx)" button there streams the current
+`data/orders.xlsx` (same Basic Auth protection, since it's under `/admin`).
 
 **Local testing:** use the [Stripe CLI](https://stripe.com/docs/stripe-cli)
 to forward webhook events to your dev server —
