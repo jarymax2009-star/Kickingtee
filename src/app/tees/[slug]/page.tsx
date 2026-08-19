@@ -72,10 +72,7 @@ export default async function TeeDetailPage({
           <dl>
             <Spec label="Style / cut" value={tee.category} />
             <Spec label="Fixed height" value={tee.heightMm ? `${tee.heightMm} mm` : null} />
-            <Spec
-              label="Adjustable range"
-              value={tee.adjustableRangeMm ? `${tee.adjustableRangeMm} mm` : null}
-            />
+            <Spec label="Adjustable range" value={tee.adjustableRangeMm} />
             <Spec label="Adjustment mechanism" value={tee.mechanism ?? tee.mechanismFamily} />
             <Spec label="Ball cup angle" value={tee.cupAngleDeg ? `${tee.cupAngleDeg}°` : null} />
           </dl>

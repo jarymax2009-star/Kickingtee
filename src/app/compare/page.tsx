@@ -25,10 +25,7 @@ const SECTIONS: { title: string; rows: Row[] }[] = [
     title: "Height & fit",
     rows: [
       { label: "Fixed height", value: (t) => (t.heightMm ? `${t.heightMm} mm` : "—") },
-      {
-        label: "Adjustable range",
-        value: (t) => (t.adjustableRangeMm ? `${t.adjustableRangeMm} mm` : "—"),
-      },
+      { label: "Adjustable range", value: (t) => t.adjustableRangeMm ?? "—" },
       { label: "Adjustment mechanism", value: (t) => t.mechanism ?? t.mechanismFamily },
       { label: "Ball cup angle", value: (t) => (t.cupAngleDeg ? `${t.cupAngleDeg}°` : "—") },
     ],
