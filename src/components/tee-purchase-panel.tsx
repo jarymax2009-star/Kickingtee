@@ -97,7 +97,7 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
               href={tee.sourceUrl.split(";")[0].trim()}
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="text-brand-blue hover:underline"
+              className="text-brand-blue underline underline-offset-2 hover:no-underline"
             >
               {new URL(tee.sourceUrl.split(";")[0].trim()).hostname}
             </a>

@@ -124,6 +124,30 @@ graceful "not configured" fallback were all tested directly — the actual
 Stripe/Resend API calls could not be exercised end-to-end here and should
 be smoke-tested once deployed somewhere with normal internet access.
 
+## Performance, security & accessibility
+
+A few things worth knowing about how the site is configured under the hood:
+
+- **Images**: every product image goes through `next/image` (automatic
+  resizing/format conversion, lazy-loaded below the fold) — the only
+  reason it's invisible today is that there are no real product photos
+  yet (see [Product photography](#product-photography) above).
+- **Security headers** (`next.config.ts`): a static Content-Security-Policy,
+  `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`,
+  `Referrer-Policy`, `Permissions-Policy`, and HSTS are set on every
+  response. The CSP deliberately avoids nonces so pages can stay
+  statically generated — this only works because checkout is a full-page
+  redirect to a Stripe-hosted URL rather than an embedded iframe/Elements
+  integration; revisit the policy if that ever changes.
+- **SEO**: `src/app/robots.ts` and `src/app/sitemap.ts` generate
+  `/robots.txt` and `/sitemap.xml` (every static page + all 33 product
+  pages), pointing at `NEXT_PUBLIC_SITE_URL`.
+- **Accessibility**: every page passes an automated WCAG 2 A/AA sweep
+  (axe-core) with zero violations — including colour contrast (the hero's
+  accent blue and the homepage brand strip needed adjusting; see
+  `--color-blue-ondark` in `globals.css`) and links embedded in body text
+  being distinguishable without relying on colour alone.
+
 ## Development
 
 ```bash

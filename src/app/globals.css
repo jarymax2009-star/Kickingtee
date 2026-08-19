@@ -6,6 +6,9 @@
 
   --color-navy: #0b1f3a;
   --color-blue: #0066cc;
+  /* Lighter accent for blue text on navy — #0066cc only hits ~3:1 on navy,
+     short of WCAG AA for anything but large bold text. */
+  --color-blue-ondark: #3399ff;
   --color-silver: #d9e2ec;
   --color-white: #ffffff;
   --color-grey: #5b6770;
@@ -17,6 +20,7 @@
 
   --color-brand-navy: var(--color-navy);
   --color-brand-blue: var(--color-blue);
+  --color-brand-blue-ondark: var(--color-blue-ondark);
   --color-brand-silver: var(--color-silver);
   --color-brand-white: var(--color-white);
   --color-brand-grey: var(--color-grey);

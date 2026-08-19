@@ -84,7 +84,6 @@ export default function ProductImage({
       style={{ objectFit: "contain" }}
       onError={() => setFailed(true)}
       priority={priority}
-      unoptimized
     />
   );
 }

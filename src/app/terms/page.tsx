@@ -32,11 +32,11 @@ export default function TermsPage() {
           <p>
             These terms apply to every order placed through kickingtee.com
             and, together with our{" "}
-            <a href="/privacy" className="text-brand-blue hover:underline">
+            <a href="/privacy" className="text-brand-blue underline underline-offset-2 hover:no-underline">
               Privacy Policy
             </a>{" "}
             and{" "}
-            <a href="/returns" className="text-brand-blue hover:underline">
+            <a href="/returns" className="text-brand-blue underline underline-offset-2 hover:no-underline">
               Returns &amp; Refunds Policy
             </a>
             , form the agreement between you and us.
@@ -114,7 +114,7 @@ export default function TermsPage() {
             Regulations 2013 give you the right to cancel your order within
             14 days of receiving your goods, for any reason, without
             needing to give a reason. See our{" "}
-            <a href="/returns" className="text-brand-blue hover:underline">
+            <a href="/returns" className="text-brand-blue underline underline-offset-2 hover:no-underline">
               Returns &amp; Refunds Policy
             </a>{" "}
             for exactly how to do this.
@@ -129,7 +129,7 @@ export default function TermsPage() {
             described, or not fit for purpose, you may be entitled to a
             repair, replacement, price reduction, or refund depending on how
             long you&apos;ve had it. See our{" "}
-            <a href="/returns" className="text-brand-blue hover:underline">
+            <a href="/returns" className="text-brand-blue underline underline-offset-2 hover:no-underline">
               Returns &amp; Refunds Policy
             </a>{" "}
             for details.

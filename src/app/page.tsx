@@ -25,7 +25,7 @@ export default function Home() {
             </span>
             <h1 className="mt-5 font-display text-4xl font-bold leading-tight sm:text-5xl">
               Find the right kicking tee —{" "}
-              <span className="text-brand-blue">by spec, not guesswork.</span>
+              <span className="text-brand-blue-ondark">by spec, not guesswork.</span>
             </h1>
             <p className="mt-5 max-w-lg text-white/70">
               Every major rugby kicking tee brand, filterable by height,
@@ -186,7 +186,7 @@ export default function Home() {
             {brands.map((b) => (
               <span
                 key={b}
-                className="font-display text-sm font-bold text-brand-navy/60"
+                className="font-display text-sm font-bold text-brand-navy/70"
               >
                 {b}
               </span>
