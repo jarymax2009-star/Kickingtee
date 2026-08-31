@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { insertOrder } from "@/lib/db";
 import { sendOrderNotificationEmail } from "@/lib/email";
-import { appendOrderRowsToExcel } from "@/lib/excel";
 import { getTeeBySlug } from "@/lib/products";
 
 export const runtime = "nodejs";
@@ -85,7 +84,7 @@ export async function POST(req: NextRequest) {
       shippingDetails?.name ?? session.customer_details?.name
     );
 
-    const { inserted } = insertOrder({
+    const { inserted } = await insertOrder({
       id: session.id,
       stripeSessionId: session.id,
       customerEmail: session.customer_details?.email ?? null,
@@ -111,28 +110,6 @@ export async function POST(req: NextRequest) {
         items,
         shippingAddress,
       });
-
-      try {
-        await appendOrderRowsToExcel(
-          items.map((item) => ({
-            orderDate: new Date(session.created * 1000).toISOString(),
-            orderId: session.id,
-            customerName,
-            customerEmail,
-            brand: item.brand,
-            model: item.model,
-            color: item.color,
-            quantity: item.quantity,
-            unitAmount: item.unitAmount,
-            currency,
-            shippingAddress,
-          }))
-        );
-      } catch (err) {
-        // The order is already safely recorded in the database — never
-        // let the Excel ledger failing take down the whole webhook.
-        console.error("[stripe-webhook] Failed to append order to Excel ledger", err);
-      }
     }
 
     return NextResponse.json({ received: true, inserted });

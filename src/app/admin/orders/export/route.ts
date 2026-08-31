@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { getOrdersWorkbookBuffer } from "@/lib/excel";
+import { buildOrdersWorkbookBuffer } from "@/lib/excel";
 
 export const runtime = "nodejs";
 
 /** Protected by the same Basic Auth as the rest of /admin (see src/proxy.ts). */
 export async function GET() {
-  const buffer = await getOrdersWorkbookBuffer();
+  const buffer = await buildOrdersWorkbookBuffer();
   return new NextResponse(new Uint8Array(buffer), {
     headers: {
       "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

@@ -12,6 +12,7 @@
     "images:manifest": "node scripts/generate-image-manifest.mjs"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.4",
     "exceljs": "^4.4.0",
     "next": "16.3.1",
     "react": "19.2.8",

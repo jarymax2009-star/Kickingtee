@@ -17,10 +17,8 @@ function formatMoney(amountMinor: number, currency: string) {
   }).format(amountMinor / 100);
 }
 
-export default function AdminOrdersPage() {
-  const orders = listOrders(100);
-  const top = topTees(10);
-  const stats = orderStats();
+export default async function AdminOrdersPage() {
+  const [orders, top, stats] = await Promise.all([listOrders(100), topTees(10), orderStats()]);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">

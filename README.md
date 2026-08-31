@@ -80,21 +80,15 @@ When a Stripe Checkout session completes, Stripe calls
 `/api/webhooks/stripe`, which:
 
 1. Verifies the request really came from Stripe (`STRIPE_WEBHOOK_SECRET`).
-2. Records the order + line items in a local SQLite database
-   (`data/orders.db`, via `src/lib/db.ts` using Node's built-in
-   `node:sqlite`) — idempotently, so a retried webhook delivery never
-   double-records an order.
-3. Appends the same order to a standalone Excel workbook,
-   `data/orders.xlsx` (`src/lib/excel.ts`, via
-   [exceljs](https://github.com/exceljs/exceljs)) — **one row per tee +
-   colour ordered**, not per order, so every row directly answers "which
-   tee and which colour." Multi-item orders share the same Order ID
-   across their rows. This file lives outside the web app's own pages —
-   open it directly in Excel, or point a synced folder (OneDrive/Dropbox/
-   Google Drive desktop) at `data/` to keep a live copy elsewhere
-   automatically. A failure writing to it never blocks the order from
-   being recorded in the database.
-4. Emails a summary of the order to `ORDER_NOTIFICATION_EMAIL` via the
+2. Records the order + line items in the order database
+   (`src/lib/db.ts`, via [`@libsql/client`](https://github.com/tursodatabase/libsql-client-ts))
+   — idempotently, so a retried webhook delivery never double-records an
+   order. With no `TURSO_DATABASE_URL` set, this is a plain SQLite file at
+   `data/orders.db`, which is all local dev needs. Set `TURSO_DATABASE_URL`
+   / `TURSO_DATABASE_AUTH_TOKEN` (a free [Turso](https://turso.tech)
+   database) in production — see
+   [Deploying to production](#deploying-to-production) below for why.
+3. Emails a summary of the order to `ORDER_NOTIFICATION_EMAIL` via the
    [Resend](https://resend.com) API (`src/lib/email.ts`). If
    `RESEND_API_KEY`/`ORDER_NOTIFICATION_EMAIL` aren't set, this step is
    skipped with a console warning — it never blocks the order from being
@@ -103,19 +97,17 @@ When a Stripe Checkout session completes, Stripe calls
 To see recorded orders and which tees are selling, visit `/admin/orders`
 — it's gated behind Basic Auth via `ADMIN_BASIC_AUTH_USER` /
 `ADMIN_BASIC_AUTH_PASS` (set in `.env.local`; the route 503s until both
-are set). A "Download orders (.xlsx)" button there streams the current
-`data/orders.xlsx` (same Basic Auth protection, since it's under `/admin`).
+are set). A "Download orders (.xlsx)" button there builds a spreadsheet
+(`src/lib/excel.ts`, via [exceljs](https://github.com/exceljs/exceljs))
+**fresh from the database on every download** — one row per tee + colour
+ordered, not per order, so every row directly answers "which tee and
+which colour." Multi-item orders share the same Order ID across their
+rows.
 
 **Local testing:** use the [Stripe CLI](https://stripe.com/docs/stripe-cli)
 to forward webhook events to your dev server —
 `stripe listen --forward-to localhost:3000/api/webhooks/stripe` — and copy
 the `whsec_...` it prints into `STRIPE_WEBHOOK_SECRET`.
-
-**Before deploying to a serverless platform** (Vercel, etc.): `data/orders.db`
-is a plain file on local disk, which doesn't persist across serverless
-function invocations. Swap `src/lib/db.ts` for a hosted database (Turso/
-libSQL, Postgres, Supabase...) before relying on this in that kind of
-deployment — it's fine as-is for a traditional always-on Node server.
 
 This environment's network egress policy blocks `api.stripe.com` and
 `api.resend.com`, so the webhook's signature verification and
@@ -123,6 +115,49 @@ event-filtering logic, the database layer, and the email module's
 graceful "not configured" fallback were all tested directly — the actual
 Stripe/Resend API calls could not be exercised end-to-end here and should
 be smoke-tested once deployed somewhere with normal internet access.
+
+## Deploying to production
+
+The app builds and runs anywhere Next.js does. On a **serverless**
+platform (Vercel, etc.) specifically, the local filesystem isn't
+persistent between requests, so a couple of things need real,
+externally-hosted services rather than the local-file defaults used in
+dev:
+
+1. **Push this repo to GitHub** (already done if you're reading this from
+   the deployed branch) and import it in [Vercel](https://vercel.com) —
+   New Project → Import Git Repository. It'll detect Next.js and deploy
+   with no config changes needed.
+2. **Order database** — create a free database at
+   [turso.tech](https://turso.tech), then set `TURSO_DATABASE_URL` and
+   `TURSO_DATABASE_AUTH_TOKEN` in the Vercel project's Environment
+   Variables. Without these, `/admin/orders` and the Stripe webhook will
+   error on every request in production, since there's no persistent
+   `data/orders.db` file to fall back to.
+3. **Stripe (live mode)** — switch the Stripe Dashboard out of test mode,
+   copy the live secret key into `STRIPE_SECRET_KEY`, then add a webhook
+   endpoint pointing at `https://kickingtee.com/api/webhooks/stripe`
+   (event: `checkout.session.completed`) and copy its signing secret into
+   `STRIPE_WEBHOOK_SECRET`.
+4. **Resend** — verify a sending domain for kickingtee.com in the Resend
+   dashboard (so order emails don't land in spam / get rejected), then
+   set `RESEND_API_KEY`, `ORDER_NOTIFICATION_EMAIL`, and
+   `ORDER_NOTIFICATION_FROM` to an address on that verified domain.
+5. **`NEXT_PUBLIC_SITE_URL`** — set to `https://kickingtee.com` so Stripe
+   checkout redirects and metadata URLs are correct.
+6. **`ADMIN_BASIC_AUTH_USER` / `ADMIN_BASIC_AUTH_PASS`** — pick real
+   credentials for `/admin/orders`, not the `.env.example` placeholders.
+7. **DNS** — point kickingtee.com at Vercel (either delegate nameservers
+   to Vercel, or add the A/CNAME records it gives you when you add the
+   domain under the project's Settings → Domains).
+
+**Before taking real orders**, revisit the two things flagged elsewhere in
+this README as explicitly not done yet: get the [legal pages](#whats-here)
+reviewed by a solicitor and fill in their `[bracketed placeholders]`
+(they're `noindex`d and show an on-page draft warning until then), and
+confirm actual supply/fulfilment terms with each of the 11 brands before
+selling their products — see
+[Payments](#payments) above.
 
 ## SEO & discoverability
 
