@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import CartButton from "./cart-button";
+import { CHECKOUT_ENABLED } from "@/lib/site";
 
 const NAV = [
-  { href: "/shop", label: "Shop All Tees" },
+  { href: "/shop", label: "All Tees" },
   { href: "/shop?code=Union", label: "Union" },
   { href: "/shop?code=League", label: "League" },
   { href: "/compare", label: "Compare" },
@@ -46,7 +47,7 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <CartButton />
+          {CHECKOUT_ENABLED && <CartButton />}
           <button
             className="inline-flex h-10 w-10 items-center justify-center rounded-md text-brand-navy md:hidden"
             aria-label="Toggle menu"

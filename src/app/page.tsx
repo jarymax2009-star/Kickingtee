@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ProductCard from "@/components/product-card";
 import { getAllTees, getBrands } from "@/lib/products";
+import { CHECKOUT_ENABLED } from "@/lib/site";
 
 export default function Home() {
   const tees = getAllTees();
@@ -90,10 +91,15 @@ export default function Home() {
               title: "Field-tested, not guessed",
               body: "We're rating wind stability and wet-pitch grip ourselves, tee by tee, as testing wraps up.",
             },
-            {
-              title: "Checkout that just works",
-              body: "Stripe handles payment. Cards, Apple Pay and Google Pay all work at checkout.",
-            },
+            CHECKOUT_ENABLED
+              ? {
+                  title: "Checkout that just works",
+                  body: "Stripe handles payment. Cards, Apple Pay and Google Pay all work at checkout.",
+                }
+              : {
+                  title: "Independent",
+                  body: "We don't sell tees, so no brand gets a better spot. Compare here, then buy direct from the maker.",
+                },
           ].map((card) => (
             <div
               key={card.title}

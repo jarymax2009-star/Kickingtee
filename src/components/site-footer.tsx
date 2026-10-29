@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { CHECKOUT_ENABLED } from "@/lib/site";
 
 export default function SiteFooter() {
   return (
@@ -15,20 +16,23 @@ export default function SiteFooter() {
               className="h-10 w-auto"
             />
             <p className="mt-4 max-w-xs text-sm text-white/70">
-              An independent, cross-brand marketplace for rugby kicking
+              An independent, cross-brand comparison site for rugby kicking
               tees. We list the real numbers so you can compare properly.
             </p>
           </div>
 
           <div>
             <h3 className="font-display text-sm font-bold uppercase tracking-wide text-white/90">
-              Shop
+              Tees
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               <li><Link href="/shop" className="hover:text-white">All tees</Link></li>
               <li><Link href="/shop?code=Union" className="hover:text-white">Union</Link></li>
               <li><Link href="/shop?code=League" className="hover:text-white">League</Link></li>
-              <li><Link href="/cart" className="hover:text-white">Cart</Link></li>
+              <li><Link href="/compare" className="hover:text-white">Compare</Link></li>
+              {CHECKOUT_ENABLED && (
+                <li><Link href="/cart" className="hover:text-white">Cart</Link></li>
+              )}
             </ul>
           </div>
 
@@ -38,18 +42,22 @@ export default function SiteFooter() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
               <li><Link href="/about" className="hover:text-white">About &amp; testing method</Link></li>
-              <li><Link href="/terms" className="hover:text-white">Terms &amp; Conditions</Link></li>
+              <li><Link href="/terms" className="hover:text-white">Terms of Use</Link></li>
               <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-              <li><Link href="/returns" className="hover:text-white">Returns &amp; Refunds</Link></li>
+              {CHECKOUT_ENABLED && (
+                <li><Link href="/returns" className="hover:text-white">Returns &amp; Refunds</Link></li>
+              )}
             </ul>
           </div>
 
           <div>
             <h3 className="font-display text-sm font-bold uppercase tracking-wide text-white/90">
-              Payments
+              {CHECKOUT_ENABLED ? "Payments" : "Independent"}
             </h3>
             <p className="mt-4 text-sm text-white/70">
-              Secure checkout powered by Stripe. All major cards accepted.
+              {CHECKOUT_ENABLED
+                ? "Secure checkout powered by Stripe. All major cards accepted."
+                : "We don't sell tees or take payment from brands for listings. Every tee is shown on the same specs."}
             </p>
           </div>
         </div>

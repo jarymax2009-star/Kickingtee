@@ -6,6 +6,7 @@ import ColorSwatches from "./color-swatches";
 import AddToCart from "./add-to-cart";
 import CompareToggle from "./compare-toggle";
 import { formatPrice, isPurchasable, type Tee } from "@/lib/products";
+import { CHECKOUT_ENABLED } from "@/lib/site";
 
 const CONFIDENCE_COPY: Record<string, string> = {
   confirmed: "Price confirmed directly with retailer",
@@ -15,6 +16,8 @@ const CONFIDENCE_COPY: Record<string, string> = {
 
 export default function TeePurchasePanel({ tee }: { tee: Tee }) {
   const [color, setColor] = useState(tee.colors[0]?.name ?? "Black");
+  const sourceHref = tee.sourceUrl?.split(";")[0].trim() || null;
+  const sourceHost = sourceHref ? new URL(sourceHref).hostname.replace(/^www\./, "") : null;
   const selectedHex = tee.colors.find((c) => c.name === color)?.hex;
 
   return (
@@ -79,7 +82,18 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <div className="min-w-[220px] flex-1">
-            <AddToCart slug={tee.slug} color={color} purchasable={isPurchasable(tee)} />
+            {CHECKOUT_ENABLED ? (
+              <AddToCart slug={tee.slug} color={color} purchasable={isPurchasable(tee)} />
+            ) : sourceHref ? (
+              <a
+                href={sourceHref}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="block w-full rounded-md bg-brand-blue px-6 py-3 text-center text-sm font-bold text-white transition hover:bg-brand-navy"
+              >
+                View on {sourceHost} ↗
+              </a>
+            ) : null}
           </div>
           <CompareToggle slug={tee.slug} variant="detail" />
         </div>
@@ -90,17 +104,25 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
           </p>
         )}
 
-        {tee.sourceUrl && (
+        {sourceHref && CHECKOUT_ENABLED && (
           <p className="mt-4 text-xs text-brand-grey">
             Manufacturer reference:{" "}
             <a
-              href={tee.sourceUrl.split(";")[0].trim()}
+              href={sourceHref}
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="text-brand-blue underline underline-offset-2 hover:no-underline"
             >
-              {new URL(tee.sourceUrl.split(";")[0].trim()).hostname}
+              {sourceHost}
             </a>
+          </p>
+        )}
+
+        {!CHECKOUT_ENABLED && (
+          <p className="mt-4 text-xs text-brand-grey">
+            KickingTee.com doesn&apos;t sell tees. You buy directly from the
+            manufacturer or retailer, so check their price, stock and
+            delivery before ordering.
           </p>
         )}
       </div>

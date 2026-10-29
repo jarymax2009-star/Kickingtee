@@ -1,10 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_CHECKOUT_ENABLED === "true";
+const SHOP_ONLY_PATHS = ["/cart", "/checkout", "/returns", "/api/checkout"];
+
 /**
- * Basic Auth gate for /admin/*. Runs on the Edge runtime, so this
- * intentionally avoids Node-only APIs (Buffer) in favour of atob().
+ * 1. Comparison-only mode: while checkout is off, the cart, checkout,
+ *    returns page and checkout API are switched off (pages redirect to
+ *    /shop, the API returns 404).
+ * 2. Basic Auth gate for /admin/*. Runs on the Edge runtime, so this
+ *    intentionally avoids Node-only APIs (Buffer) in favour of atob().
  */
 export function proxy(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  if (SHOP_ONLY_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
+    if (CHECKOUT_ENABLED) return NextResponse.next();
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json({ error: "Checkout is not available." }, { status: 404 });
+    }
+    return NextResponse.redirect(new URL("/shop", req.url));
+  }
+
   const user = process.env.ADMIN_BASIC_AUTH_USER;
   const pass = process.env.ADMIN_BASIC_AUTH_PASS;
 
@@ -38,5 +54,11 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: [
+    "/admin/:path*",
+    "/cart",
+    "/checkout/:path*",
+    "/returns",
+    "/api/checkout",
+  ],
 };
