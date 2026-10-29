@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import FilterSidebar from "@/components/filter-sidebar";
 import ProductCard from "@/components/product-card";
@@ -15,6 +15,17 @@ function ShopContent() {
     codes: initialCode && ["Union", "League", "Both"].includes(initialCode) ? [initialCode] : [],
   }));
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Stop the page behind the filter drawer scrolling instead of the drawer
+  // itself (iOS Safari otherwise hands the scroll to the page).
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
 
   const results = useMemo(() => applyFilters(allTees, filters), [filters]);
   const activeCount = activeFilterCount(filters);
@@ -42,7 +53,7 @@ function ShopContent() {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[240px_1fr]">
         <aside className="hidden lg:block">
-          <div className="sticky top-24">
+          <div className="sticky top-24 max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain pr-2 pb-6">
             <FilterSidebar filters={filters} onChange={setFilters} />
           </div>
         </aside>
@@ -53,7 +64,7 @@ function ShopContent() {
               className="absolute inset-0 bg-black/40"
               onClick={() => setMobileOpen(false)}
             />
-            <div className="absolute inset-y-0 left-0 w-[85%] max-w-sm overflow-y-auto bg-white p-5 shadow-xl">
+            <div className="absolute left-0 top-0 h-dvh w-[85%] max-w-sm overflow-y-auto overscroll-contain bg-white p-5 pb-[calc(env(safe-area-inset-bottom)+2rem)] shadow-xl">
               <div className="mb-2 flex items-center justify-between">
                 <span className="font-display text-sm font-bold text-brand-navy">
                   Filters
