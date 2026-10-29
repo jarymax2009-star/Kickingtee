@@ -93,7 +93,11 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
               >
                 View on {sourceHost} ↗
               </a>
-            ) : null}
+            ) : (
+              <p className="rounded-md border border-brand-silver px-4 py-3 text-center text-sm text-brand-grey">
+                Not currently sold direct by {tee.brand}
+              </p>
+            )}
           </div>
           <CompareToggle slug={tee.slug} variant="detail" />
         </div>
@@ -120,9 +124,9 @@ export default function TeePurchasePanel({ tee }: { tee: Tee }) {
 
         {!CHECKOUT_ENABLED && (
           <p className="mt-4 text-xs text-brand-grey">
-            KickingTee.com doesn&apos;t sell tees. You buy directly from the
-            manufacturer or retailer, so check their price, stock and
-            delivery before ordering.
+            KickingTee.com doesn&apos;t sell tees. Links go to the brand&apos;s
+            own online shop, so check their price, stock and delivery before
+            ordering.
           </p>
         )}
       </div>
